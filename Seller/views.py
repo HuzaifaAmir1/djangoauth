@@ -186,14 +186,19 @@ class SkillViewSet(viewsets.ModelViewSet):
 from rest_framework import generics
 from .models import Seller
 from .Serializer import SellerinfoSerializer
-
+import random
 class SellerListView(generics.ListAPIView):
     queryset = Seller.objects.all()
     serializer_class = SellerinfoSerializer
     permission_classes = [IsAuthenticated]
     def get_queryset(self):
         user_id = self.request.query_params.get('user_id', None)
-
+        if user_id and user_id == '0':
+            all_sellers = Seller.objects.all()
+            total_sellers = all_sellers.count()
+            if total_sellers <= 20:
+                return all_sellers
+            return random.sample(list(all_sellers), min(20, all_sellers.count()))
         if user_id:
             # If user_id is provided, fetch information for that specific user
             return Seller.objects.filter(user__id=user_id)

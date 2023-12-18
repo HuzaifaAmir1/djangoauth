@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'notifications',
     'message',
     'channels',
+    'dispute',
     # 'Payment.apps.PaymentConfig',
 ]
 MIDDLEWARE = [

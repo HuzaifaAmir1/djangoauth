@@ -41,6 +41,7 @@ urlpatterns = [
     path('api/', include('JobProposal.urls')),
     path('api/', include('Payment.urls')),
     path('api/', include('Course.urls')),
+    path('api/', include('dispute.urls')),
     path('api/v1/' ,include('message.urls')),
     path('api/v2/',
          include([
